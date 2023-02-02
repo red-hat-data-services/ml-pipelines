@@ -3,30 +3,22 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  # Build Configs
-  - ./buildconfigs/visualization-server.yaml
-
   # CustomResourceDefinitions
-  - ./customresourcedefinitions/viewers.yaml
   - ./customresourcedefinitions/scheduledworkflows.yaml
 
   # Deployments
   - ./deployments/ds-pipeline-persistenceagent.yaml
   - ./deployments/ds-pipeline-scheduledworkflow.yaml
-  - ./deployments/ds-pipeline-viewer-crd.yaml
-  - ./deployments/ds-pipeline-visualizationserver.yaml
   - ./deployments/ds-pipeline.yaml
 
   # Rolebindings
   - ./rolebindings/ds-pipeline-scheduledworkflow-binding.yaml
-  - ./rolebindings/ds-pipeline-viewer-crd-binding.yaml
   - ./rolebindings/ds-pipeline.yaml
   - ./rolebindings/pipeline-runner-binding.yaml
   - ./rolebindings/ds-pipeline-visualizationserver.yaml
 
   # Roles
   - ./roles/ds-pipeline-scheduledworkflow-role.yaml
-  - ./roles/ds-pipeline-viewer-controller-role.yaml
   - ./roles/ds-pipeline.yaml
   - ./roles/pipeline-runner.yaml
 
@@ -40,17 +32,10 @@ resources:
   - ./serviceaccounts/ds-pipeline-container-builder.yaml
   - ./serviceaccounts/ds-pipeline-persistenceagent.yaml
   - ./serviceaccounts/ds-pipeline-scheduledworkflow.yaml
-  - ./serviceaccounts/ds-pipeline-viewer-crd-service-account.yaml
-  - ./serviceaccounts/ds-pipeline-viewer.yaml
-  - ./serviceaccounts/ds-pipeline-visualizationserver.yaml
   - ./serviceaccounts/ds-pipeline.yaml
   - ./serviceaccounts/pipeline-runner.yaml
 
-  # Image Streams
-  - ./imagestreams/visualization-server.yaml
-
   # Services
-  - ./services/ds-pipeline-visualizationserver.yaml
   - ./services/ds-pipeline.yaml
 
   # Monitoring
@@ -110,9 +95,5 @@ images:
   - name: scheduledworkflow
     newName: quay.io/modh/odh-ml-pipelines-scheduledworkflow-container
     newTag: v1.18.0-8
-  - name: viewer-crd-controller
-    newName: quay.io/modh/odh-ml-pipelines-viewercontroller-container
-    newTag: v1.18.0-8
-  - name: api-server
     newName: quay.io/modh/odh-ml-pipelines-api-server-container
     newTag: v1.18.0-8

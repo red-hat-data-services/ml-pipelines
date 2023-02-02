@@ -1,0 +1,36 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # Build Configs
+  - ./buildconfigs/visualization-server.yaml
+
+  # CustomResourceDefinitions
+  - ./customresourcedefinitions/viewers.yaml
+
+  # Deployments
+  - ./deployments/ds-pipeline-viewer-crd.yaml
+  - ./deployments/ds-pipeline-visualizationserver.yaml
+
+  # Rolebindings
+  - ./rolebindings/ds-pipeline-viewer-crd-binding.yaml
+
+  # Roles
+  - ./roles/ds-pipeline-viewer-controller-role.yaml
+
+  # ServiceAccounts
+  - ./serviceaccounts/ds-pipeline-viewer-crd-service-account.yaml
+  - ./serviceaccounts/ds-pipeline-viewer.yaml
+  - ./serviceaccounts/ds-pipeline-visualizationserver.yaml
+
+  # Image Streams
+  - ./imagestreams/visualization-server.yaml
+
+  # Services
+  - ./services/ds-pipeline-visualizationserver.yaml
+
+images:
+  - name: viewer-crd-controller
+    newName: quay.io/modh/odh-ml-pipelines-viewercontroller-container
+    newTag: v1.18.0-8
