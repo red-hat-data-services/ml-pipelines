@@ -30,7 +30,7 @@ RUN go-licenses csv ./backend/src/crd/controller/scheduledworkflow > /tmp/licens
     diff /tmp/licenses.csv backend/third_party_licenses/swf.csv && \
     go-licenses save ./backend/src/crd/controller/scheduledworkflow --save_path /tmp/NOTICES
 
-FROM alpine:3.11
+FROM alpine:3.16.7
 WORKDIR /bin
 
 COPY --from=builder /bin/controller /bin/controller
