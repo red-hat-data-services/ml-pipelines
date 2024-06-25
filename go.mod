@@ -146,6 +146,7 @@ replace (
 	github.com/cloudevents/sdk-go/v2 v2.12.0 => github.com/cloudevents/sdk-go/v2 v2.15.1
 	github.com/containerd/containerd v1.6.9 => github.com/containerd/containerd v1.7.13
 	github.com/docker/docker v20.10.20+incompatible => github.com/docker/docker/v20 v20.10.24
+	github.com/elazarl/goproxy v0.0.0-20180725130230-947c36da3153 => github.com/elazarl/goproxy v0.0.0-20240618083138-03be62527ccb
 	github.com/go-git/go-git/v5 v5.4.2 => github.com/go-git/go-git/v5 v5.11.0
 	github.com/gobuffalo/packr/v2 v2.2.0 => github.com/gobuffalo/packr/v2 v2.3.2
 	github.com/mattn/go-sqlite3 => github.com/mattn/go-sqlite3 v1.9.0
@@ -155,6 +156,7 @@ replace (
 	go.opencensus.io => go.opencensus.io v0.22.5
 	go.opentelemetry.io/contrib v0.20.0 => go.opentelemetry.io/contrib v0.44.0
 	golang.org/x/net v0.17.0 => golang.org/x/net v0.23.0
+	golang.org/x/net v0.21.0 => golang.org/x/net v0.23.0
 	gopkg.in/yaml.v3 => gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b => gopkg.in/yaml.v3 v3.0.1
 )
