@@ -23,7 +23,7 @@ replace (
 	github.com/cloudevents/sdk-go/v2 v2.12.0 => github.com/cloudevents/sdk-go/v2 v2.15.1
 	github.com/containerd/containerd v1.6.9 => github.com/containerd/containerd v1.7.13
 	github.com/cyphar/filepath-securejoin v0.2.3 => github.com/cyphar/filepath-securejoin v0.2.4
-	github.com/dgrijalva/jwt-go/v3 v3.2.0+incompatible => github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
+	github.com/dgrijalva/jwt-go/v3 v3.2.0 => github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
 	github.com/gin-gonic/gin v1.8.1 => github.com/gin-gonic/gin v1.9.1
 	github.com/jackc/pgproto3/v2 v2.3.0 => github.com/jackc/pgproto3/v2 v2.3.3
 	github.com/jackc/pgx/v4 v4.16.1 => github.com/jackc/pgx/v5 v5.5.4
