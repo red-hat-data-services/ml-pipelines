@@ -28,5 +28,7 @@ replace (
 	github.com/kubeflow/kfp-tekton/tekton-catalog/objectstore => ../objectstore/
 	github.com/mattn/go-sqlite3 v1.14.15 => github.com/mattn/go-sqlite3 v1.14.18
 	github.com/opencontainers/runc v1.1.2 => github.com/opencontainers/runc v1.1.12
+	go.opentelemetry.io/contrib@v0.20.0 => go.opentelemetry.io/contrib v0.44.0
 	golang.org/x/net v0.1.0 => golang.org/x/net v0.23.0
+	github.com/containerd/containerd v1.6.9 => github.com/containerd/containerd v1.7.13
 )
