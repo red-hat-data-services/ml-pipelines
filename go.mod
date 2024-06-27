@@ -145,24 +145,15 @@ require (
 replace (
 	github.com/cloudevents/sdk-go/v2 v2.12.0 => github.com/cloudevents/sdk-go/v2 v2.15.1
 	github.com/containerd/containerd v1.6.9 => github.com/containerd/containerd v1.7.13
-	github.com/cyphar/filepath-securejoin v0.2.3 => github.com/cyphar/filepath-securejoin v0.2.4
-	github.com/dgrijalva/jwt-go/v3 v3.2.0+incompatible => github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
 	github.com/docker/docker v20.10.20+incompatible => github.com/docker/docker/v20 v20.10.24
-	github.com/gin-gonic/gin v1.8.1 => github.com/gin-gonic/gin v1.9.1
 	github.com/go-git/go-git/v5 v5.4.2 => github.com/go-git/go-git/v5 v5.11.0
 	github.com/gobuffalo/packr/v2 v2.2.0 => github.com/gobuffalo/packr/v2 v2.3.2
-	github.com/jackc/pgproto3/v2 v2.3.0 => github.com/jackc/pgproto3/v2 v2.3.3
-	github.com/jackc/pgx/v4 v4.16.1 => github.com/jackc/pgx/v5 v5.5.4
 	github.com/mattn/go-sqlite3 => github.com/mattn/go-sqlite3 v1.9.0
-	github.com/mattn/go-sqlite3 v1.14.15 => github.com/mattn/go-sqlite3 v1.14.18
 	github.com/mattn/go-sqlite3 v1.9.0 => github.com/mattn/go-sqlite3 v1.14.18
-	github.com/opencontainers/runc v1.1.2 => github.com/opencontainers/runc v1.1.12
 	github.com/prometheus/common => github.com/prometheus/common v0.26.0
-	go.etcd.io/etcd v0.5.0-alpha.5.0.20200910180754-dd1b699fc489 => go.etcd.io/etcd/v3 v3.4.0
 	go.mongodb.org/mongo-driver => go.mongodb.org/mongo-driver v1.4.4
 	go.opencensus.io => go.opencensus.io v0.22.5
 	go.opentelemetry.io/contrib v0.20.0 => go.opentelemetry.io/contrib v0.44.0
-	golang.org/x/net v0.1.0 => golang.org/x/net v0.23.0
 	golang.org/x/net v0.17.0 => golang.org/x/net v0.23.0
 	golang.org/x/net v0.21.0 => golang.org/x/net v0.23.0
 	gopkg.in/yaml.v3 => gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b

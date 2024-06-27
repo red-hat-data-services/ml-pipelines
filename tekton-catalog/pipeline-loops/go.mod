@@ -19,6 +19,14 @@ require (
 )
 
 replace (
+	github.com/cyphar/filepath-securejoin v0.2.3 => github.com/cyphar/filepath-securejoin v0.2.4
+	github.com/dgrijalva/jwt-go/v3 v3.2.0+incompatible => github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
+	github.com/gin-gonic/gin v1.8.1 => github.com/gin-gonic/gin v1.9.1
+	github.com/jackc/pgproto3/v2 v2.3.0 => github.com/jackc/pgproto3/v2 v2.3.3
+	github.com/jackc/pgx/v4 v4.16.1 => github.com/jackc/pgx/v5 v5.5.4
 	github.com/kubeflow/kfp-tekton/tekton-catalog/cache => ../cache/
 	github.com/kubeflow/kfp-tekton/tekton-catalog/objectstore => ../objectstore/
+	github.com/mattn/go-sqlite3 v1.14.15 => github.com/mattn/go-sqlite3 v1.14.18
+	github.com/opencontainers/runc v1.1.2 => github.com/opencontainers/runc v1.1.12
+	golang.org/x/net v0.1.0 => golang.org/x/net v0.23.0
 )
