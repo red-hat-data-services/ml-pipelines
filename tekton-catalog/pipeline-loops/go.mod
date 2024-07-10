@@ -4,9 +4,11 @@ go 1.13
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.1
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/elazarl/goproxy v0.0.0-20240618083138-03be62527ccb // indirect
 	github.com/google/go-cmp v0.6.0
 	github.com/hashicorp/go-multierror v1.1.1
+	github.com/jackc/pgproto3 v1.1.0 // indirect
 	github.com/kubeflow/kfp-tekton/tekton-catalog/cache v0.0.0
 	github.com/kubeflow/kfp-tekton/tekton-catalog/objectstore v0.0.0
 	github.com/tektoncd/pipeline v0.41.0
