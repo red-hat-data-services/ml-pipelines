@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.1
+	github.com/elazarl/goproxy v0.0.0-20240618083138-03be62527ccb // indirect
 	github.com/google/go-cmp v0.6.0
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/kubeflow/kfp-tekton/tekton-catalog/cache v0.0.0
@@ -38,5 +39,4 @@ replace (
 	go.opentelemetry.io/contrib v0.24.0 => go.opentelemetry.io/contrib v1.0.0
 	golang.org/x/net v0.1.0 => golang.org/x/net v0.23.0
 	gopkg.in/src-d/go-git.v4 v4.13.1 => github.com/go-git/go-git/v5 v5.12.0
-	github.com/go-git/go-git/v5 v5.4.2 => github.com/go-git/go-git/v5 v5.11.0	
 )
