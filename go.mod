@@ -155,6 +155,7 @@ replace (
 	go.opencensus.io => go.opencensus.io v0.22.5
 	go.opentelemetry.io/contrib v0.20.0 => go.opentelemetry.io/contrib v0.44.0
 	golang.org/x/net v0.17.0 => golang.org/x/net v0.23.0
+	golang.org/x/net v0.21.0 => golang.org/x/net v0.23.0
 	gopkg.in/yaml.v3 => gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b => gopkg.in/yaml.v3 v3.0.1
 )
