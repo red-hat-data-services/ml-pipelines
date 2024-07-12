@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.1
-	github.com/google/go-cmp v0.5.9
+	github.com/google/go-cmp v0.6.0
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/kubeflow/kfp-tekton/tekton-catalog/cache v0.0.0
 	github.com/kubeflow/kfp-tekton/tekton-catalog/objectstore v0.0.0
@@ -24,6 +24,7 @@ replace (
 	github.com/cyphar/filepath-securejoin v0.2.3 => github.com/cyphar/filepath-securejoin v0.2.4
 	github.com/dgrijalva/jwt-go => github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
 	github.com/gin-gonic/gin v1.8.1 => github.com/gin-gonic/gin v1.9.1
+	github.com/go-git/go-git/v5 v5.4.2 => github.com/go-git/go-git/v5 v5.11.0
 	github.com/jackc/pgproto3/v2 v2.3.0 => github.com/jackc/pgproto3/v2 v2.3.3
 	github.com/jackc/pgx/v4 v4.16.1 => github.com/jackc/pgx/v5 v5.6.0
 	github.com/kubeflow/kfp-tekton/tekton-catalog/cache => ../cache/
@@ -34,4 +35,5 @@ replace (
 	go.etcd.io/etcd/v3 v3.4.0-alpha.5.0.20200910180754-dd1b699fc489 => go.etcd.io/etcd/v3 v3.4.10
 	go.opentelemetry.io/contrib v0.20.0 => go.opentelemetry.io/contrib v1.0.0
 	golang.org/x/net v0.1.0 => golang.org/x/net v0.23.0
+	gopkg.in/src-d/go-git.v4 v4.13.1 => github.com/go-git/go-git/v5 v5.12.0
 )
