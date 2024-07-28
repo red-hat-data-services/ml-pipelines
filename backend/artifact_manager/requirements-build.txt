@@ -43,3 +43,4 @@ wheel==0.43.0
 # The following packages are considered to be unsafe in a requirements file:
 setuptools==70.0.0
     # via setuptools-scm
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
