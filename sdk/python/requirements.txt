@@ -10,7 +10,7 @@ attrs==20.3.0
     # via jsonschema
 cachetools==4.2.1
     # via google-auth
-certifi==2020.12.5
+certifi==2023.7.22
     # via
     #   kfp-server-api
     #   kubernetes
@@ -63,7 +63,7 @@ httplib2==0.19.1
     # via
     #   google-api-python-client
     #   google-auth-httplib2
-idna==2.10
+idna==3.7
     # via requests
 jsonschema==3.2.0
     # via kfp
@@ -94,7 +94,7 @@ pyasn1-modules==0.2.8
     # via google-auth
 pycparser==2.20
     # via cffi
-pydantic==1.8.2
+pydantic==1.10.13
     # via kfp
 pyparsing==2.4.7
     # via
@@ -112,7 +112,7 @@ pyyaml==5.4.1
     # via
     #   kfp
     #   kubernetes
-requests==2.25.1
+requests==2.32.2
     # via
     #   google-api-core
     #   google-cloud-storage
@@ -154,17 +154,19 @@ uritemplate==3.0.1
     # via
     #   google-api-python-client
     #   kfp
-urllib3==1.26.3
+urllib3==1.26.19
     # via
     #   kfp-server-api
     #   kubernetes
     #   requests
 websocket-client==0.57.0
     # via kubernetes
-wheel==0.36.2
+wheel==0.38.0
     # via strip-hints
 wrapt==1.12.1
     # via deprecated
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
