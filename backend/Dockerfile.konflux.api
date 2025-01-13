@@ -1,0 +1,59 @@
+# Build arguments
+ARG SOURCE_CODE=.
+
+FROM registry.redhat.io/ubi8/go-toolset:1.21@sha256:742ae6ec1aef3e7faae488c47695fb64964d342aefecf52d23bd9d5e6731d0b6 as builder
+
+## Build args to be used at this step
+ARG SOURCE_CODE
+
+USER root
+
+# Needed musl-dev for github.com/mattn/go-sqlite3
+RUN dnf update -y && \
+    dnf install -y cmake clang openssl
+
+COPY ${SOURCE_CODE}/go.mod ./
+COPY ${SOURCE_CODE}/go.sum ./
+
+# Copy the source
+COPY ${SOURCE_CODE}/ ./
+
+RUN GO111MODULE=on go build -o /bin/apiserver ./backend/src/apiserver/ && \
+    dnf clean all
+
+FROM registry.redhat.io/ubi8/ubi-minimal@sha256:c12e67af6a7e15113d76bc72f10bef2045c026c71ec8b7124c8a075458188a83
+
+WORKDIR /bin
+
+COPY --from=builder /opt/app-root/src/backend/src/apiserver/config/ /config
+COPY --from=builder /bin/apiserver /bin/apiserver
+
+RUN chmod +x /bin/apiserver
+
+USER root
+
+# Adding CA certificate so API server can download pipeline through URL and wget is used for liveness/readiness probe command
+RUN microdnf update -y && \
+    microdnf install -y ca-certificates wget
+
+USER 1001
+
+# Expose apiserver port
+EXPOSE 8888
+
+# Start the apiserver
+CMD /bin/apiserver --config=/config --sampleconfig=/config/sample_config.json -logtostderr=true
+
+LABEL com.redhat.component="odh-ml-pipelines-api-server-container" \
+      name="managed-open-data-hub/odh-ml-pipelines-api-server-container-rhel8" \
+      git.url="${CI_DATA_SCIENCE_PIPELINES_TEKTON_UPSTREAM_URL}" \
+      git.commit="${CI_DATA_SCIENCE_PIPELINES_TEKTON_UPSTREAM_COMMIT}" \
+      summary="odh-ml-pipelines-api-server" \
+      io.openshift.expose-services="" \
+      io.k8s.display-name="odh-ml-pipelines-api-server" \
+      maintainer="['managed-open-data-hub@redhat.com']" \
+      description="odh-ml-pipelines-api-server" \
+      io.k8s.description="odh-ml-pipelines-api-server" \
+      com.redhat.license_terms="https://www.redhat.com/licenses/Red_Hat_Standard_EULA_20191108.pdf"
+
+

@@ -1,0 +1,24 @@
+FROM registry.access.redhat.com/ubi8/python-39@sha256:781a5a150944214c2d47580f30d04716f032262d8283f3e7b609772b810f34ef
+WORKDIR /opt/app-root/src
+
+COPY backend/artifact_manager/* /opt/app-root/src/
+
+RUN pip install --upgrade pip && pip install -Ur requirements.txt
+
+USER 1001
+
+CMD ["/bin/bash", "-e"]
+
+
+LABEL com.redhat.component="odh-ml-pipelines-artifact-manager-container" \
+      name="managed-open-data-hub/odh-ml-pipelines-artifact-manager-container-rhel8" \
+      version="${CI_CONTAINER_VERSION}" \
+      git.url="${CI_DATA_SCIENCE_PIPELINES_TEKTON_UPSTREAM_URL}" \
+      git.commit="${CI_DATA_SCIENCE_PIPELINES_TEKTON_UPSTREAM_COMMIT}" \
+      summary="odh-ml-pipelines-artifact-manager" \
+      io.openshift.expose-services="" \
+      io.k8s.display-name="odh-ml-pipelines-artifact-manager" \
+      maintainer="['managed-open-data-hub@redhat.com']" \
+      description="odh-ml-pipelines-artifact-manager" \
+      io.k8s.description="odh-ml-pipelines-artifact-manager" \
+      com.redhat.license_terms="https://www.redhat.com/licenses/Red_Hat_Standard_EULA_20191108.pdf"
