@@ -1,0 +1,14 @@
+contentOrigin:
+  repofiles:
+    - ubi.repo
+packages:
+  - git
+  - bash
+  - openssh
+  - gcc
+  - tzdata
+  - cmake
+  - clang
+  - openssl
+  - ca-certificates
+  - wget
