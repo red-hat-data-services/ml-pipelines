@@ -31,7 +31,8 @@ spec:
   - name: path-context
     value: .
   - name: prefetch-input
-    value: '{"type": "gomod", "path": "."}'
+    value: |
+      [{"type": "gomod"}, {"type": "rpm"}]
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
@@ -234,6 +235,8 @@ spec:
       params:
       - name: input
         value: $(params.prefetch-input)
+      - name: dev-package-managers
+        value: "true"
       - name: SOURCE_ARTIFACT
         value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
       - name: ociStorage
