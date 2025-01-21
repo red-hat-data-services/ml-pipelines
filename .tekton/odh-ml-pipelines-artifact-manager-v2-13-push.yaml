@@ -6,9 +6,12 @@ metadata:
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "rhoai-2.13"
-  creationTimestamp: null
+    build.appstudio.openshift.io/build-nudge-files: "build/operator-nudging.yaml"
+    pipelinesascode.tekton.dev/on-cel-expression: |
+      event == "push" 
+      && target_branch == "rhoai-2.13"
+      && ( !".tekton/**".pathChanged() || ".tekton/odh-ml-pipelines-artifact-manager-v2-13-push.yaml".pathChanged() )
+  creationTimestamp:
   labels:
     appstudio.openshift.io/application: rhoai-v2-13
     appstudio.openshift.io/component: odh-ml-pipelines-artifact-manager-v2-13
@@ -22,7 +25,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/rhoai-tenant/odh-ml-pipelines-artifact-manager-v2-13:{{revision}}
+    value: quay.io/rhoai/odh-ml-pipelines-artifact-manager-rhel8:{{target_branch}}
   - name: dockerfile
     value: backend/Dockerfile.konflux.artifact_manager
   - name: path-context
@@ -47,6 +50,28 @@ spec:
         - name: kind
           value: task
         resolver: bundles
+    - name: send-slack-notification
+      params:
+      - name: message
+        value: "$(tasks.rhoai-init.results.slack-message-failure-text)"
+      - name: secret-name
+        value: rhoai-konflux-secret
+      - name: key-name
+        value: slack-webhook
+      taskRef:
+        params:
+        - name: name
+          value: slack-webhook-notification
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-slack-webhook-notification:0.1@sha256:dc17b70633363d78414b8c06dc1660d25742935f106a6116995638e1210c2730
+        - name: kind
+          value: task
+        resolver: bundles
+      when:
+      - input: $(tasks.status)
+        operator: in
+        values:
+        - "Failed"
     params:
     - description: Source Repository URL
       name: git-url
@@ -118,6 +143,45 @@ spec:
       name: CHAINS-GIT_COMMIT
       value: $(tasks.clone-repository.results.commit)
     tasks:
+    - name: rhoai-init
+      params:
+      - name: pipelinerun-name
+        value: "$(context.pipelineRun.name)"
+      taskSpec:
+        results:
+        - description: Notification text to be posted to slack
+          name: slack-message-failure-text
+        steps:
+        - image: quay.io/rhoai-konflux/alpine:latest
+          name: rhoai-init
+          env:
+          - name: slack_message
+            valueFrom:
+              secretKeyRef:
+                name: rhoai-konflux-secret
+                key: slack-component-failure-notification
+          script: |
+            pipelinerun_name=$(params.pipelinerun-name)
+            target_branch={{target_branch}}
+            echo "pipelinerun-name = $pipelinerun_name"
+
+            application_name=${target_branch/rhoai-/}
+            application_name=rhoai-v${application_name/./-}
+            echo "application-name = $application_name"
+
+            component_name=${pipelinerun_name/-on-*/}
+            echo "component-name = $component_name"
+
+            KONFLUX_SERVER="https://konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com"
+            build_url="${KONFLUX_SERVER}/application-pipeline/workspaces/rhoai/applications/${application_name}/pipelineruns/${pipelinerun_name}/logs"
+
+            build_time="$(date +%Y-%m-%dT%H:%M:%S)"
+
+            slack_message=${slack_message/__BUILD__URL__/$build_url}
+            slack_message=${slack_message/__PIPELINERUN__NAME__/$pipelinerun_name}
+            slack_message=${slack_message/__BUILD__TIME__/$build_time}
+
+            #echo -en "${slack_message}" > "$(results.slack-message-failure-text.path)"
     - name: init
       params:
       - name: image-url
@@ -211,6 +275,14 @@ spec:
         - $(params.build-args[*])
       - name: BUILD_ARGS_FILE
         value: $(params.build-args-file)
+      - name: LABELS
+        value:
+        - version=v2.13.2
+        - url=$(params.git-url)
+        - release=$(tasks.clone-repository.results.commit-timestamp)
+        - git.url=$(params.git-url)
+        - git.commit=$(params.revision)
+        - io.openshift.tags=odh-ml-pipelines-artifact-manager
       - name: SOURCE_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       - name: CACHI2_ARTIFACT
