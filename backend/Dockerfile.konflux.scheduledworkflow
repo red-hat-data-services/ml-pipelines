@@ -27,7 +27,7 @@ WORKDIR /bin
 COPY --from=builder /bin/controller /bin/controller
 RUN chmod +x /bin/controller
 
-RUN microdnf makecache
+RUN microdnf makecache --disablerepo=* --enablerepo=ubi-8-appstream-rpm
 
 ENV NAMESPACE ""
 
