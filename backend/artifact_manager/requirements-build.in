@@ -1,12 +1,12 @@
 calver==2022.6.26
 Cython==0.29.37
-flit_core >=3.9,<4
+flit_core==3.9.0
 hatchling==1.24.2
-packaging>=24.0
+packaging==24.0
 pathspec==0.12.1
 pluggy==1.5.0
 setuptools-scm==7.1.0
-tomli>=1.0.0
+tomli==1.0.0
 trove-classifiers==2024.5.22
 typing-extensions==4.12.1
 wheel==0.43.0
