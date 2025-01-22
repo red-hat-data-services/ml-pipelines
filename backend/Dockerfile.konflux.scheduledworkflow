@@ -27,7 +27,6 @@ WORKDIR /bin
 COPY --from=builder /bin/controller /bin/controller
 RUN chmod +x /bin/controller
 
-RUN microdnf makecache --disablerepo=* --enablerepo=ubi-8-appstream-rpm  --enablerepo=ubi-8-baseos-rpms
 ENV NAMESPACE ""
 
 CMD /bin/controller --logtostderr=true --namespace=${NAMESPACE}
